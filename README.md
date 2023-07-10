@@ -36,6 +36,21 @@ setelah itu lakukan build docker image dengan perintah
 
 
 # Soal Nomor 4
+untuk port forwarder saya menggunakan socat untuk melakukan port forwarder aplikasi dari VM2 ke VM1, pertama install socat pada VM1
+
+> yum install socat
+
+buat service systemd
+
+>Description=Forwards IPVM2:8080 to VM1:8080
+>
+>[Service]
+>ExecStart=/usr/bin/socat TCP-LISTEN:8080,fork,reuseaddr TCP:IPVM2:8080
+>
+>[Install]
+>WantedBy=multi-user.target
+
+
 Jalankan docker container menggunakan image sebelumnya
 
 > docker run --name skill-test -p 8080:80 -d skill-test:latest

@@ -1,0 +1,7 @@
+Description=Forwards 172.16.10.241:8080 to localhost:8080
+
+[Service]
+ExecStart=/usr/bin/socat TCP-LISTEN:8080,fork,reuseaddr TCP:172.16.10.241:8080
+
+[Install]
+WantedBy=multi-user.target
